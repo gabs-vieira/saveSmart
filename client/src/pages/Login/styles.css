@@ -1,3 +1,97 @@
-.login__container {
-    background: #f0f;
-}
+/* Container principal */
+.login-container {
+    display: flex;
+    height: 100vh;
+    justify-content: space-between; /* Faz com que o espaço entre a área esquerda e direita seja controlado */
+  }
+  
+  /* Lado esquerdo - Área vazia */
+  .login-left {
+    width: 30%; /* 30% do espaço para a área vazia */
+    background-color: #a7d8c2; /* Cor de fundo da área vazia */
+  }
+  
+  /* Lado direito - Formulário de login */
+  .login-right {
+    width: 70%; /* 70% do espaço para o formulário */
+    background-color: #4c5b5e; /* Cor do fundo do lado direito, como o fundo dos TextFields */
+    color: white;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Título principal */
+  .login-title {
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  
+  /* Subtítulo */
+  .login-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: white;
+    text-align: center;
+  }
+  
+  /* Estilo do formulário */
+  .login-form {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* Espaçamento entre os inputs */
+  }
+  
+  /* Estilo dos campos de entrada */
+  .MuiInputBase-root {
+    background-color: #3b4c4b; /* Cor mais escura para os TextFields */
+    color: white;
+  }
+  
+  .MuiInputLabel-root {
+    color: white; /* Cor do label dos campos */
+  }
+  
+  .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: #a0d5c2; /* Cor da borda quando o campo está em foco */
+  }
+  
+  /* Estilo do botão */
+  button {
+    background-color: #28a745; /* Cor verde para o botão */
+    color: white;
+    padding: 0.8rem;
+    font-size: 1.1rem;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 1rem; /* Espaçamento acima do botão */
+  }
+  
+  button:hover {
+    background-color: #218838; /* Cor do botão quando passar o mouse */
+  }
+  
+  /* Texto do link de cadastro */
+  .login-register-text {
+    margin-top: 1rem;
+    cursor: pointer;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #a0a0a0;
+  }
+  
+  .register-link {
+    color: #f9d246; /* Cor do link "Clique aqui para fazer cadastro" */
+    font-weight: bold;
+  }
+  

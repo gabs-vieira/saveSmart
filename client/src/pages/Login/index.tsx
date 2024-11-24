@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
-import { api } from '../../services/api'
-import { useNavigate } from 'react-router-dom'
-import { Button, TextField } from '@mui/material';
-import './styles.css'
+import React, { useState, useEffect } from "react";
+import { api } from "../../services/api";
+import { useNavigate } from "react-router-dom";
+import { Button, TextField, Typography } from "@mui/material";
+import "./styles.css";
 
 interface GithubResponse {
   id: number;
@@ -11,77 +11,62 @@ interface GithubResponse {
 }
 
 export const Login = () => {
-    const [contador, setContador] = useState(0)
-    const [info, setInfo] = useState<GithubResponse | null>(null)
-    const [isLoading, setIsLoading] = useState(true)
-    const navigate = useNavigate()
-    // Form
-    const [name, setName] = useState('');
-  
-    useEffect(() => {
-      console.log('name', name);
-    }, [name]);
-  
-    useEffect(() => {
-      // fetch('https://api.github.com/users/gustavo-cauzzi')
-      // .then(response => response.json())
-      // .then(responseBody => {
-      //   setInfo(responseBody)
-      //   setIsLoading(false)
-      // })
-  
-      const getData = async () => {
-        const response = await api.get('/users/gustavo-cauzzi')
-        setInfo(response.data)
-        setIsLoading(false)
-      }
-  
-      getData()
-    }, [])
-  
-    const handleIncrement = () => {
-      setContador(contador + 1)
-    }
-  
-    const handleSaveUser = () => {
-      // TODO: save
-    }
-  
-    // const handleLogin = () => {
-    //   // TODO: Request do login
-    //   const data = { jwt: 'batata' }
-    //   api.defaults.headers['Authorization'] = `Bearer ${data.jwt}`
-    // }
-  
-    const handleGoToSignIn = () => {
-        navigate('/signin')
-    }
-  
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-    return (
+  const handleSaveUser = () => {
+    // TODO: save
+  };
 
-    <div className="container">
-        <p>
-            Contador {contador}
-        </p>
-        <Button onClick={handleIncrement} variant="outlined">
-            Incrementar
-        </Button>
-        <Button onClick={handleIncrement} variant="contained">
-            Incrementar
-        </Button>
-        <Button onClick={handleGoToSignIn}>
-            Criar seu usuario
-        </Button>
+  const handleLogin = (event: React.FormEvent) => {
+    event.preventDefault();
+  };
 
-    <form onSubmit={(event) => {
-      event.preventDefault()
-      handleSaveUser()
-    }}>
-      <TextField label="Name" type="text" value={name} onChange={event => setName(event.target.value)} />
+  const handleGoToRegister = () => {
+    navigate("/register");
+  };
 
-      <button>Save</button>
-    </form>
-  </div>
-    )
-}
+  return (
+    <div className="login-container">
+      <div className="login-left"></div> {/* Área vazia à esquerda */}
+      <div className="login-right">
+        <h1 className="login-title">SaveSmart</h1>
+        <h2 className="login-subtitle">Login</h2>
+
+        <form onSubmit={handleLogin} className="login-form">
+          <TextField
+            label="Email"
+            type="email"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+            fullWidth
+            margin="normal"
+            variant="outlined"
+          />
+          <TextField
+            label="Senha"
+            type="password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+            fullWidth
+            margin="normal"
+            variant="outlined"
+          />
+          <Button type="submit" variant="contained" color="primary" fullWidth>
+            Entrar
+          </Button>
+        </form>
+
+        <Typography
+          variant="body2"
+          className="login-register-text"
+          onClick={handleGoToRegister}
+        >
+          Não tem conta?{" "}
+          <span className="register-link">Clique aqui para fazer cadastro</span>
+        </Typography>
+      </div>
+    </div>
+  );
+};
