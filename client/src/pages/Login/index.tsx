@@ -1,31 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { api } from "../../services/api";
 import { useNavigate } from "react-router-dom";
 import { Button, TextField, Typography } from "@mui/material";
-import { login } from "../../services/api";  // Importe a função de login
 import "./styles.css";
+
+interface GithubResponse {
+  id: number;
+  bio: string;
+  login: string;
+}
 
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");  // Adiciona um estado para mensagens de erro
   const navigate = useNavigate();
 
-  const handleLogin = async (event: React.FormEvent) => {
+  const handleSaveUser = () => {
+    // TODO: save
+  };
+
+  const handleLogin = (event: React.FormEvent) => {
     event.preventDefault();
-
-    try {
-      // Chama a função de login do serviço
-      const data = await login(email, password);
-
-      // Se o login for bem-sucedido, armazene o token no localStorage
-      localStorage.setItem("authToken", data.access_token);
-
-      // Redireciona o usuário para a página principal ou para onde você desejar
-      navigate("/dashboard");  // Exemplo de redirecionamento
-    } catch (error) {
-      // Em caso de erro, exibe uma mensagem de erro para o usuário
-      setErrorMessage("Credenciais inválidas. Tente novamente.");
-    }
   };
 
   const handleGoToRegister = () => {
@@ -38,9 +33,6 @@ export const Login = () => {
       <div className="login-right">
         <h1 className="login-title">SaveSmart</h1>
         <h2 className="login-subtitle">Login</h2>
-
-        {/* Exibe a mensagem de erro, se houver */}
-        {errorMessage && <Typography color="error">{errorMessage}</Typography>}
 
         <form onSubmit={handleLogin} className="login-form">
           <TextField
