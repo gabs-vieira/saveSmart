@@ -1,26 +1,37 @@
 import React, { useState, useEffect } from "react";
-import { api } from "../../services/api";
 import { useNavigate } from "react-router-dom";
 import { Button, TextField, Typography } from "@mui/material";
+import { fetchUsers, login } from "../../services/api";
+import { loginData } from "../../types/user.ts";
 import "./styles.css";
 
-interface GithubResponse {
-  id: number;
-  bio: string;
-  login: string;
-}
-
 export const Login = () => {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [users, setUsers] = useState([]);
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleSaveUser = () => {
+  const handleSaveUser = async () => {
+    const users = await fetchUsers();
+    setUsers(users);
     // TODO: save
   };
 
-  const handleLogin = (event: React.FormEvent) => {
+  const handleLogin = async (event: React.FormEvent) => {
     event.preventDefault();
+
+    const data = {
+      username: username,
+      password: password,
+    };
+
+    const loginResponse = await login(data);
+
+    if (loginResponse) {
+      navigate("/transaction");
+    } else {
+      console.error("Erro no login: Tokens não encontrados.");
+    }
   };
 
   const handleGoToRegister = () => {
@@ -38,8 +49,8 @@ export const Login = () => {
           <TextField
             label="Email"
             type="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
+            value={username}
+            onChange={(event) => setUsername(event.target.value)}
             fullWidth
             margin="normal"
             variant="outlined"
@@ -53,10 +64,26 @@ export const Login = () => {
             margin="normal"
             variant="outlined"
           />
-          <Button type="submit" variant="contained" color="primary" fullWidth>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            fullWidth
+            onClick={handleLogin}
+          >
             Entrar
           </Button>
         </form>
+
+        <Button
+          variant="outlined"
+          color="secondary"
+          fullWidth
+          style={{ marginTop: "10px" }}
+          onClick={handleSaveUser}
+        >
+          Mostrar Usuários (GET)
+        </Button>
 
         <Typography
           variant="body2"
