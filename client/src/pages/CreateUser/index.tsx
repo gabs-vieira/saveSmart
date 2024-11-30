@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, TextField, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { api } from "../../services/api";
+import { createUser } from "../../services/api";
 import "./styles.css"; // Importando o novo CSS
 
 export function CreateUser() {
@@ -19,13 +19,12 @@ export function CreateUser() {
 
     try {
       // Chama a API para criar o usuário
-      await api.createUser({
+
+      const response = await createUser({
         username,
         email,
         password,
       });
-
-      // Se o cadastro for bem-sucedido, redireciona para a tela de login
       navigate("/login");
     } catch (error) {
       // Exibe mensagem de erro em caso de falha
@@ -80,8 +79,7 @@ export function CreateUser() {
           className="register-login-text"
           onClick={() => navigate("/login")}
         >
-          Já tem uma conta?{" "}
-          <span className="login-link">Faça login</span>
+          Já tem uma conta? <span className="login-link">Faça login</span>
         </Typography>
       </div>
       <div className="register-right"></div>
