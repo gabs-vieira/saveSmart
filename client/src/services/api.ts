@@ -2,8 +2,8 @@ import axios from 'axios'
 import { userData } from '../types/user';
 
 export const api = axios.create({
-    baseURL: 'https://api.github.com'
-})
+    baseURL: 'http://localhost:8000/api/' // URL da sua API Django
+});
 
 
 //Create user
