@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, TextField, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { api } from "../../services/api";
+import "./styles.css"; // Importando o novo CSS
 
 export function CreateUser() {
   const [username, setUsername] = useState("");
@@ -18,7 +19,7 @@ export function CreateUser() {
 
     try {
       // Chama a API para criar o usuário
-      const response = await api.createUser({
+      await api.createUser({
         username,
         email,
         password,
@@ -34,54 +35,56 @@ export function CreateUser() {
   };
 
   return (
-    <div className="register-container" style={{ padding: "20px", width: "300px", margin: "0 auto" }}>
-      <Typography variant="h5" gutterBottom>
-        Cadastro
-      </Typography>
-      <form onSubmit={handleRegister}>
-        <TextField
-          label="Nome de Usuário"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          fullWidth
-          margin="normal"
-          variant="outlined"
-        />
-        <TextField
-          label="Email"
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          fullWidth
-          margin="normal"
-          variant="outlined"
-        />
-        <TextField
-          label="Senha"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          fullWidth
-          margin="normal"
-          variant="outlined"
-        />
-        {error && (
-          <Typography variant="body2" color="error" style={{ marginTop: "10px" }}>
-            {error}
-          </Typography>
-        )}
-        <Button type="submit" variant="contained" color="primary" fullWidth style={{ marginTop: "20px" }}>
-          Registrar
-        </Button>
-      </form>
-
-      <Typography
-        variant="body2"
-        style={{ marginTop: "10px", cursor: "pointer", textAlign: "center" }}
-        onClick={() => navigate("/login")}
-      >
-        Já tem uma conta? Faça login.
-      </Typography>
+    <div className="register-container">
+      <div className="register-left">
+        <Typography className="register-title" variant="h4">
+          Cadastro
+        </Typography>
+        <Typography className="register-subtitle" variant="body1">
+          Preencha as informações abaixo para criar sua conta.
+        </Typography>
+        <form className="register-form" onSubmit={handleRegister}>
+          <TextField
+            label="Nome de Usuário"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            fullWidth
+            variant="outlined"
+          />
+          <TextField
+            label="Email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            fullWidth
+            variant="outlined"
+          />
+          <TextField
+            label="Senha"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            fullWidth
+            variant="outlined"
+          />
+          {error && (
+            <Typography variant="body2" color="error">
+              {error}
+            </Typography>
+          )}
+          <Button type="submit" variant="contained" color="primary">
+            Registrar
+          </Button>
+        </form>
+        <Typography
+          className="register-login-text"
+          onClick={() => navigate("/login")}
+        >
+          Já tem uma conta?{" "}
+          <span className="login-link">Faça login</span>
+        </Typography>
+      </div>
+      <div className="register-right"></div>
     </div>
   );
 }

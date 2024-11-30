@@ -1,0 +1,98 @@
+/* Estilos gerais */
+.transactions-container {
+    padding: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    padding-top: 80px; /* Para dar espaço para o cabeçalho fixo */
+  }
+
+  body {
+    background-color: #a7d8c2; /* Altere para a cor desejada */
+  }
+  
+  /* Cabeçalho */
+  .header {
+    background-color: #95a5a6; /* Cinza claro */
+    position: fixed; /* Fixa o cabeçalho no topo */
+    top: 0;
+    left: 0;
+    width: 100%; /* O cabeçalho ocupa toda a largura da tela */
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100; /* Garante que o cabeçalho fique acima do conteúdo */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Botão de Sair */
+  .logout-button {
+    color: white;
+    margin-right: 20px;
+    padding: 8px;
+    transition: background-color 0.3s;
+  }
+  
+  .logout-button:hover {
+    background-color: darkred;
+  }
+
+  /* Saldo */
+  .header-balance {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0; /* Remove margem para melhor alinhamento */
+  }
+  
+  /* Ícone de Perfil */
+  .profile-icon {
+    color: white;
+    right: 50px;
+  }
+  
+  /* Tabela */
+  .table-container {
+    margin-top: 100px; /* Ajusta a margem superior da tabela */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  table {
+    width: 100%;
+  }
+  
+  th, td {
+    padding: 16px;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    color: #2c3e50;
+    border: 1px solid #d1d1d1;
+  }
+  
+  th {
+    background-color: #95a5a6; /* Mesma cor do cabeçalho */
+    color: white;
+  }
+  
+  td {
+    background-color: white;
+  }
+  
+  td:nth-child(2) {
+    font-weight: bold;
+    color: #e74c3c;
+  }
+  
+  td:nth-child(3), td:nth-child(4) {
+    font-style: italic;
+  }
+  
+  tr:nth-child(odd) {
+    background-color: #f4f4f4;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #fff;
+  }
+  
