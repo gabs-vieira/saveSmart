@@ -8,107 +8,120 @@ import {
   TableRow,
   Paper,
   Typography,
+  Button,
   IconButton,
 } from "@mui/material";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import ExitToAppIcon from "@mui/icons-material/ExitToApp"; // Ícone para o botão de sair
+import LogoutIcon from "@mui/icons-material/Logout";
+import AddIcon from "@mui/icons-material/Add";
+import FilterListIcon from "@mui/icons-material/FilterList";
 import { api } from "../../services/api"; // API para pegar transações
-import "./styles.css"; // CSS com a estilização
+import "./styles.css"; // Estilos personalizados
 
-// Definindo um tipo para transações
 interface Transaction {
   id: number;
   date: string;
-  amount: number;
-  paymentMethod: string;
+  value: number;
   description: string;
-  type: "entrada" | "saída";
 }
 
 export function Transaction() {
-  const [transactions, setTransactions] = useState<Transaction[]>([]); // Tipo das transações
-  const [balance, setBalance] = useState<number>(0);
+  const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const [totalValue, setTotalValue] = useState<number>(0);
 
-  // Função para buscar transações da API
-  const fetchTransactions = async () => {
-    try {
-      const response = await api.get("transactions/"); // Endpoint da sua API
-      setTransactions(response.data);
-    } catch (error) {
-      console.error("Erro ao carregar transações:", error);
-    }
-  };
-
-  // Função para calcular o saldo
-  const calculateBalance = (transactions: Transaction[]) => {
-    return transactions.reduce((total, transaction) => {
-      if (transaction.type === "entrada") {
-        return total + transaction.amount; // Entrada
-      }
-      return total - transaction.amount; // Saída
-    }, 0);
-  };
-
-  // Chama a função ao carregar o componente
   useEffect(() => {
+    // Simulação de uma chamada de API
+    const fetchTransactions = async () => {
+      try {
+        const response = await api.get("/transactions"); // Substituir pelo endpoint real
+        setTransactions(response.data);
+      } catch (error) {
+        console.error("Erro ao carregar transações:", error);
+      }
+    };
+
     fetchTransactions();
   }, []);
 
-  // Calcula o saldo sempre que as transações mudarem
   useEffect(() => {
-    setBalance(calculateBalance(transactions));
+    // Calcula o total somando os valores das transações
+    const calculateTotal = () => {
+      const total = transactions.reduce(
+        (sum, transaction) => sum + transaction.value,
+        0
+      );
+      setTotalValue(total);
+    };
+
+    calculateTotal();
   }, [transactions]);
 
   const handleLogout = () => {
-    // Lógica de logout (pode ser para limpar sessão, redirecionar, etc.)
-    console.log("Saindo...");
+    console.log("Usuário deslogado");
+    // Redirecionar ou limpar sessão
+  };
+
+  const handleAddTransaction = () => {
+    console.log("Abrir modal de adicionar transação");
+  };
+
+  const handleFilterTransactions = () => {
+    console.log("Abrir opções de filtro");
   };
 
   return (
     <div className="transactions-container">
       {/* Cabeçalho */}
       <header className="header">
-        {/* Botão de Sair (vermelho) */}
-        <IconButton className="logout-button" onClick={handleLogout}>
-          <ExitToAppIcon fontSize="large" />
-        </IconButton>
-
-        {/* Saldo centralizado */}
-        <div className="balance-container">
-          <Typography variant="h5" className="header-balance">
-            R$ {balance.toFixed(2)}
-          </Typography>
-        </div>
-
-        {/* Ícone de perfil no canto direito */}
-        <IconButton className="profile-icon">
-          <AccountCircleIcon fontSize="large" />
+        <Typography variant="h5" className="header-title">
+          SaveSmart
+        </Typography>
+        <Typography variant="h6" className="header-balance">
+          Total: R$ {totalValue.toFixed(2)}
+        </Typography>
+        <IconButton onClick={handleLogout} className="logout-button">
+          <LogoutIcon />
         </IconButton>
       </header>
 
-      {/* Tabela de Transações */}
-      <TableContainer component={Paper}>
+      {/* <div className="actions">
+        <Button
+          variant="contained"
+          color="primary"
+          startIcon={<FilterListIcon />}
+          onClick={handleFilterTransactions}
+        >
+          Filtro
+        </Button>
+        <Button
+          variant="contained"
+          color="secondary"
+          startIcon={<AddIcon />}
+          onClick={handleAddTransaction}
+        >
+          Adicionar
+        </Button>
+      </div>
+
+      <TableContainer component={Paper} className="table-container">
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell className="table-header">Data</TableCell>
-              <TableCell className="table-header">Valor</TableCell>
-              <TableCell className="table-header">Forma de Pagamento</TableCell>
-              <TableCell className="table-header">Descrição</TableCell>
+              <TableCell>Data</TableCell>
+              <TableCell>Valor</TableCell>
+              <TableCell>Descrição</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {transactions.map((transaction) => (
               <TableRow key={transaction.id}>
                 <TableCell>{transaction.date}</TableCell>
-                <TableCell>R$ {transaction.amount.toFixed(2)}</TableCell>
-                <TableCell>{transaction.paymentMethod}</TableCell>
+                <TableCell>R$ {transaction.value.toFixed(2)}</TableCell>
                 <TableCell>{transaction.description}</TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
-      </TableContainer>
+      </TableContainer> */}
     </div>
   );
 }
