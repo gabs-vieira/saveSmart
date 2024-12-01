@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { createUser } from "../../services/api";
 import "./styles.css"; // Importando o novo CSS
 
-export function CreateUser() {
+export function CreateUser() {  
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
