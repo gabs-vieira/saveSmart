@@ -6,12 +6,6 @@ html, body {
     height: 100%;
   }
   
-  /* Container principal */
-  .register-container {
-    display: flex;
-    height: 100vh;
-    justify-content: space-between; /* Espaço controlado entre os lados */
-  }
   
   /* Lado esquerdo - Formulário de registro */
   .register-left {
@@ -34,10 +28,14 @@ html, body {
     text-align: center;
   }
   
+  .title-container{
+    margin-bottom: 15px;
+  }
+
   /* Subtítulo */
   .register-subtitle {
     font-size: 1.5rem;
-    margin-bottom: 2rem;
+    /* margin-bottom: 2rem; */
     color: white;
     text-align: center;
   }

@@ -37,10 +37,10 @@ export const Login = () => {
   };
 
   return (
-    <div className="login-container">
+    <div className="container">
       <div className="login-left"></div> {/* Área vazia à esquerda */}
       <div className="login-right">
-        <h1 className="login-title">SaveSmart</h1>
+        <h1 className="title">SaveSmart</h1>
         <h2 className="login-subtitle">Login</h2>
 
         <form onSubmit={handleLogin} className="login-form">
@@ -52,6 +52,15 @@ export const Login = () => {
             fullWidth
             margin="normal"
             variant="outlined"
+            sx={{
+              "& .MuiInputLabel-root": { color: "white" }, // Cor do rótulo
+              "& .MuiOutlinedInput-root": {
+                color: "white", // Cor do texto digitado
+                "& fieldset": { borderColor: "white" }, // Cor da borda
+                "&:hover fieldset": { borderColor: "white" }, // Cor da borda ao passar o mouse
+                "&.Mui-focused fieldset": { borderColor: "white" }, // Cor da borda quando focado
+              },
+            }}
           />
           <TextField
             label="Senha"
@@ -61,6 +70,15 @@ export const Login = () => {
             fullWidth
             margin="normal"
             variant="outlined"
+            sx={{
+              "& .MuiInputLabel-root": { color: "white" },
+              "& .MuiOutlinedInput-root": {
+                color: "white",
+                "& fieldset": { borderColor: "white" },
+                "&:hover fieldset": { borderColor: "white" },
+                "&.Mui-focused fieldset": { borderColor: "white" },
+              },
+            }}
           />
           <Button
             type="submit"
@@ -73,7 +91,7 @@ export const Login = () => {
           </Button>
         </form>
 
-        <Button
+        {/* <Button
           variant="outlined"
           color="secondary"
           fullWidth
@@ -81,7 +99,7 @@ export const Login = () => {
           onClick={handleSaveUser}
         >
           Mostrar Usuários (GET)
-        </Button>
+        </Button> */}
 
         <Typography
           variant="body2"
