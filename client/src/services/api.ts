@@ -10,23 +10,21 @@ export const api = axios.create({
 
 
 export const login = async (loginData: loginData) => {
+    try{
+        const response = await axios.post('http://localhost:8000/api/login/', {
+            username: loginData.username,
+            password: loginData.password
+        })
+        const {access, refresh} = response.data;
+        localStorage.setItem("accessToken", access);
+        localStorage.setItem("refreshToken", refresh);
+        
+        return true;
 
-    axios.post('http://localhost:8000/api/login/', {
-        username: loginData.username,
-        password: loginData.password
-      })
-      .then(response => {
-        const {access, refresh } = response.data
-        localStorage.setItem("accessToken", access)
-        localStorage.setItem("refreshToken", refresh)
-        console.log(response.data);
-        return response.data
-
-      })
-      .catch(error => {
-        console.error('Erro na requisição:', error.response || error.message);
-      });
-    
+    } catch (error){
+        console.error('Erro na requisição', error.message || error.message);
+        return false;
+    }
 }
 
 //Create user

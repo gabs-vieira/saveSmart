@@ -25,7 +25,7 @@ export function CreateUser() {
         email,
         password,
       });
-      navigate("/login");
+      navigate("/");
     } catch (error) {
       // Exibe mensagem de erro em caso de falha
       setError("Erro ao criar conta. Tente novamente.");
@@ -77,7 +77,7 @@ export function CreateUser() {
         </form>
         <Typography
           className="register-login-text"
-          onClick={() => navigate("/login")}
+          onClick={() => navigate("/")}
         >
           Já tem uma conta? <span className="login-link">Faça login</span>
         </Typography>

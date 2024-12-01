@@ -25,9 +25,7 @@ export const Login = () => {
       password: password,
     };
 
-    const loginResponse = await login(data);
-
-    if (loginResponse) {
+    if (await login(data)) {
       navigate("/transaction");
     } else {
       console.error("Erro no login: Tokens não encontrados.");
