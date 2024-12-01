@@ -1,17 +1,7 @@
 import React, { useState, useEffect } from "react";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  Typography,
-  IconButton,
-} from "@mui/material";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import ExitToAppIcon from "@mui/icons-material/ExitToApp"; // Ícone para o botão de sair
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, IconButton } from "@mui/material";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp'; // Ícone para o botão de sair
 import { api } from "../../services/api"; // API para pegar transações
 import "./styles.css"; // CSS com a estilização
 
@@ -66,25 +56,28 @@ export function Transaction() {
 
   return (
     <div className="transactions-container">
-      {/* Cabeçalho */}
       <header className="header">
-        {/* Botão de Sair (vermelho) */}
-        <IconButton className="logout-button" onClick={handleLogout}>
-          <ExitToAppIcon fontSize="large" />
-        </IconButton>
+  <div className="header2">
+    <div className="logout-button">
+      <button onClick={handleLogout}>
+        Sair
+      </button>
+    </div>
+    <div>
+      <Typography variant="h5" className="header-title">
+        SaveSmart
+      </Typography>
+    </div>
+  </div>
 
-        {/* Saldo centralizado */}
-        <div className="balance-container">
-          <Typography variant="h5" className="header-balance">
-            R$ {balance.toFixed(2)}
-          </Typography>
-        </div>
+  {/* Saldo centralizado */}
+  <div className="balance-container">
+    <Typography variant="h5" className="header-balance">
+      R$ {balance.toFixed(2)}
+    </Typography>
+  </div>
+</header>
 
-        {/* Ícone de perfil no canto direito */}
-        <IconButton className="profile-icon">
-          <AccountCircleIcon fontSize="large" />
-        </IconButton>
-      </header>
 
       {/* Tabela de Transações */}
       <TableContainer component={Paper}>
