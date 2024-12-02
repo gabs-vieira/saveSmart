@@ -25,7 +25,7 @@ export function CreateUser() {
         email,
         password,
       });
-      navigate("/login");
+      navigate("/");
     } catch (error) {
       // Exibe mensagem de erro em caso de falha
       setError("Erro ao criar conta. Tente novamente.");
@@ -34,14 +34,15 @@ export function CreateUser() {
   };
 
   return (
-    <div className="register-container">
+    <div className="container">
       <div className="register-left">
-        <Typography className="register-title" variant="h4">
-          Cadastro
-        </Typography>
-        <Typography className="register-subtitle" variant="body1">
-          Preencha as informações abaixo para criar sua conta.
-        </Typography>
+        <div className="title-container">
+          <h1 className="title">Cadastro</h1>
+          <Typography className="register-subtitle" variant="body1">
+            Preencha as informações abaixo para criar sua conta.
+          </Typography>
+        </div>
+
         <form className="register-form" onSubmit={handleRegister}>
           <TextField
             label="Nome de Usuário"
@@ -49,6 +50,15 @@ export function CreateUser() {
             onChange={(e) => setUsername(e.target.value)}
             fullWidth
             variant="outlined"
+            sx={{
+              "& .MuiInputLabel-root": { color: "white" },
+              "& .MuiOutlinedInput-root": {
+                color: "white",
+                "& fieldset": { borderColor: "white" },
+                "&:hover fieldset": { borderColor: "white" },
+                "&.Mui-focused fieldset": { borderColor: "white" },
+              },
+            }}
           />
           <TextField
             label="Email"
@@ -57,6 +67,15 @@ export function CreateUser() {
             onChange={(e) => setEmail(e.target.value)}
             fullWidth
             variant="outlined"
+            sx={{
+              "& .MuiInputLabel-root": { color: "white" },
+              "& .MuiOutlinedInput-root": {
+                color: "white",
+                "& fieldset": { borderColor: "white" },
+                "&:hover fieldset": { borderColor: "white" },
+                "&.Mui-focused fieldset": { borderColor: "white" },
+              },
+            }}
           />
           <TextField
             label="Senha"
@@ -65,6 +84,15 @@ export function CreateUser() {
             onChange={(e) => setPassword(e.target.value)}
             fullWidth
             variant="outlined"
+            sx={{
+              "& .MuiInputLabel-root": { color: "white" },
+              "& .MuiOutlinedInput-root": {
+                color: "white",
+                "& fieldset": { borderColor: "white" },
+                "&:hover fieldset": { borderColor: "white" },
+                "&.Mui-focused fieldset": { borderColor: "white" },
+              },
+            }}
           />
           {error && (
             <Typography variant="body2" color="error">
@@ -77,7 +105,7 @@ export function CreateUser() {
         </form>
         <Typography
           className="register-login-text"
-          onClick={() => navigate("/login")}
+          onClick={() => navigate("/")}
         >
           Já tem uma conta? <span className="login-link">Faça login</span>
         </Typography>

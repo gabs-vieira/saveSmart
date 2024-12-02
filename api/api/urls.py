@@ -19,10 +19,12 @@ from django.contrib import admin
 from django.db import router
 from django.urls import include, path
 from users.views import LoginView, UserViewSet
+from records.views import RecordViewSet
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
 router.register(r"users", UserViewSet, basename="user")
+router.register(r"records", RecordViewSet, basename="record")
 
 
 urlpatterns = [

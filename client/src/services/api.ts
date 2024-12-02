@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { userData, loginData } from '../types/user';
+import { userData, loginData, TransactionData } from '../types/user';
 
 // const token = localStorage.getItem("authToken")
 
@@ -10,23 +10,21 @@ export const api = axios.create({
 
 
 export const login = async (loginData: loginData) => {
+    try{
+        const response = await axios.post('http://localhost:8000/api/login/', {
+            username: loginData.username,
+            password: loginData.password
+        })
+        const {access, refresh} = response.data;
+        localStorage.setItem("accessToken", access);
+        localStorage.setItem("refreshToken", refresh);
+        
+        return true;
 
-    axios.post('http://localhost:8000/api/login/', {
-        username: loginData.username,
-        password: loginData.password
-      })
-      .then(response => {
-        const {access, refresh } = response.data
-        localStorage.setItem("accessToken", access)
-        localStorage.setItem("refreshToken", refresh)
-        console.log(response.data);
-        return response.data
-
-      })
-      .catch(error => {
-        console.error('Erro na requisição:', error.response || error.message);
-      });
-    
+    } catch (error){
+        console.error('Erro na requisição', error.message || error.message);
+        return false;
+    }
 }
 
 //Create user
@@ -63,3 +61,26 @@ export const fetchUsers = async () => {
 //     const response = await api.delete(`users/${id}/`);
 //     return response.data;
 //   };
+
+// ---------------------------------------------------------------------------------------------------------
+//Create record
+export const createTransaction = async (TransactionData: TransactionData) => {
+
+    try{
+        const response = await api.post("records/", TransactionData);
+        return response.data;
+    }catch(error){
+        console.error("Error creating a new record:", error.response?.data || error.message);
+    }
+}
+
+//Create record
+export const featchTransaction = async (TransactionData: TransactionData) => {
+
+    try{
+        const response = await api.post("records/", TransactionData);
+        return response.data;
+    }catch(error){
+        console.error("Error creating a new record:", error.response?.data || error.message);
+    }
+}
