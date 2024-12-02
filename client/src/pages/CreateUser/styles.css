@@ -49,10 +49,11 @@ html, body {
     gap: 1.5rem; /* Espaçamento entre os inputs */
   }
   
+  
   /* Estilo dos campos de entrada */
-  .MuiInputBase-root {
-    background-color: #3b4c4b; /* Cor mais escura para os TextFields */
-    color: rgb(255, 255, 255);
+  :is(.login, .create-user) .MuiInputBase-root {
+    background-color: #f0f; /* Cor mais escura para os TextFields */
+    color: white;
   }
   
   /* Tornar o texto dentro dos campos de entrada mais claro */

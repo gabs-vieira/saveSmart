@@ -34,12 +34,6 @@
     gap: 1.5rem; /* Espaçamento entre os inputs */
   }
   
-  /* Estilo dos campos de entrada */
-  .MuiInputBase-root {
-    background-color: #3b4c4b; /* Cor mais escura para os TextFields */
-    color: white;
-  }
-  
   .MuiInputLabel-root {
     color: white; /* Cor do label dos campos */
   }

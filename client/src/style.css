@@ -1,4 +1,3 @@
-/* Resetando margens e padding */
 html, body {
     margin: 0;
     padding: 0;
@@ -9,6 +8,7 @@ html, body {
   /* Estilos gerais */
   * {
     box-sizing: border-box;
+    font-family: 'Roboto'
   }
   
   /* Container principal */

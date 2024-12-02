@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { userData, loginData } from '../types/user';
+import { userData, loginData, TransactionData } from '../types/user';
 
 // const token = localStorage.getItem("authToken")
 
@@ -61,3 +61,26 @@ export const fetchUsers = async () => {
 //     const response = await api.delete(`users/${id}/`);
 //     return response.data;
 //   };
+
+// ---------------------------------------------------------------------------------------------------------
+//Create record
+export const createTransaction = async (TransactionData: TransactionData) => {
+
+    try{
+        const response = await api.post("records/", TransactionData);
+        return response.data;
+    }catch(error){
+        console.error("Error creating a new record:", error.response?.data || error.message);
+    }
+}
+
+//Create record
+export const featchTransaction = async (TransactionData: TransactionData) => {
+
+    try{
+        const response = await api.post("records/", TransactionData);
+        return response.data;
+    }catch(error){
+        console.error("Error creating a new record:", error.response?.data || error.message);
+    }
+}

@@ -53,12 +53,12 @@ export const Login = () => {
             margin="normal"
             variant="outlined"
             sx={{
-              "& .MuiInputLabel-root": { color: "white" }, // Cor do rótulo
+              "& .MuiInputLabel-root": { color: "white" },
               "& .MuiOutlinedInput-root": {
-                color: "white", // Cor do texto digitado
-                "& fieldset": { borderColor: "white" }, // Cor da borda
-                "&:hover fieldset": { borderColor: "white" }, // Cor da borda ao passar o mouse
-                "&.Mui-focused fieldset": { borderColor: "white" }, // Cor da borda quando focado
+                color: "white",
+                "& fieldset": { borderColor: "white" },
+                "&:hover fieldset": { borderColor: "white" },
+                "&.Mui-focused fieldset": { borderColor: "white" },
               },
             }}
           />
