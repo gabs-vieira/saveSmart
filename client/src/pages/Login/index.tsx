@@ -45,7 +45,7 @@ export const Login = () => {
 
         <form onSubmit={handleLogin} className="login-form">
           <TextField
-            label="Email"
+            label="Username"
             type="email"
             value={username}
             onChange={(event) => setUsername(event.target.value)}
